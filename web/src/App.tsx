@@ -1,10 +1,6 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Apod from "./pages/Apod";
-// import MarsPhotos from "./pages/MarsPhotos";
-// import Neo from "./pages/Neo";
-// import Epic from "./pages/Epic";
-// import MediaLibrary from "./pages/MediaLibrary";
 
 const TABS = [
   "APOD",
@@ -18,7 +14,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState("APOD");
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white font-sans">
+    <div className="min-h-screen ">
       <Navbar tabs={TABS} activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <main className="p-4 md:p-8">
