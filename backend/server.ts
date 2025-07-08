@@ -2,7 +2,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { apodRoutes, marsRoverRoutes } from "./routes";
+import { apodRoutes, marsRoverRoutes, neoRoutes, imageRoutes } from "./routes";
 import { errorHandler, notFoundHandler } from "./middleware/error-handler";
 
 dotenv.config();
@@ -29,6 +29,8 @@ app.use(
 
 app.use("/api/apod", apodRoutes);
 app.use("/api/mars-rover", marsRoverRoutes);
+app.use("/api/neo", neoRoutes);
+app.use("/api/image", imageRoutes);
 
 // Error handling middleware (must be last)
 app.use(errorHandler);

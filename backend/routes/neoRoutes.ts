@@ -1,8 +1,8 @@
 import express from "express";
-import { getMarsRoverPhotos } from "../controllers";
+import { getNeoFeed } from "../controllers";
 
 const router = express.Router();
 
-router.get("/", getMarsRoverPhotos);
+router.get("/feed", getNeoFeed);
 
 export default router;
