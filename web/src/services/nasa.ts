@@ -133,17 +133,23 @@ export const AVAILABLE_ROVERS = [
 ] as const;
 export type RoverName = (typeof AVAILABLE_ROVERS)[number];
 
+export const AVAILABLE_CAMERAS = [
+  "fhaz",
+  "rhaz",
+  "mast",
+  "chemcam",
+  "mahli",
+  "mardi",
+  "navcam",
+  "pancam",
+  "minites",
+] as const;
+export type CameraName = (typeof AVAILABLE_CAMERAS)[number];
+
 // API endpoints
 const endpoints = {
   apod: "/api/apod",
-  marsPhotos: "/api/mars-photos",
-  marsPhotosRover: (rover: string) => `/api/mars-photos/${rover}`,
-  roverManifest: (rover: string) => `/api/rover-manifest/${rover}`,
-  mostActiveRover: "/api/most-active-rover",
-  latestRoverPhotos: "/api/latest-rover-photos",
-  perseveranceWeather: "/api/perseverance-weather",
-  marsWeather: "/api/mars-weather",
-  multiPlanetaryDashboard: "/api/multi-planetary-dashboard",
+  marsPhotos: "/api/mars-rover",
 };
 
 // NASA API Service Functions
@@ -164,18 +170,6 @@ export const nasaApi = {
     } = {}
   ): Promise<MarsRoverResponse> => {
     return api.get<MarsRoverResponse>(endpoints.marsPhotos, params);
-  },
-
-  // Get Mars Rover photos from specific rover
-  getMarsRoverPhotosByRover: async (
-    rover: RoverName,
-    params: {
-      sol?: number;
-      camera?: string;
-      page?: number;
-    } = {}
-  ): Promise<MarsRoverResponse> => {
-    return api.get<MarsRoverResponse>(endpoints.marsPhotosRover(rover), params);
   },
 };
 
