@@ -150,6 +150,7 @@ export type CameraName = (typeof AVAILABLE_CAMERAS)[number];
 const endpoints = {
   apod: "/api/apod",
   marsPhotos: "/api/mars-rover",
+  neoVisualizer: "/api/neo/feed",
 };
 
 // NASA API Service Functions
@@ -170,6 +171,14 @@ export const nasaApi = {
     } = {}
   ): Promise<MarsRoverResponse> => {
     return api.get<MarsRoverResponse>(endpoints.marsPhotos, params);
+  },
+
+  // Get Near Earth Objects
+  getNearEarthObjects: async (params: {
+    start_date?: string;
+    end_date?: string;
+  }): Promise<NeoResponse> => {
+    return api.get<NeoResponse>(endpoints.neoVisualizer, params);
   },
 };
 

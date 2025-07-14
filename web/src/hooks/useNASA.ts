@@ -10,6 +10,7 @@ import { nasaApi } from "@/services/nasa";
 const QUERY_KEYS = {
   apod: "apod",
   marsRoverPhotos: "marsRoverPhotos",
+  neoVisualizer: "neoVisualizer",
 } as const;
 
 // APOD Hook
@@ -37,6 +38,24 @@ export const useMarsRoverPhotos = (
   return useQuery({
     queryKey: [QUERY_KEYS.marsRoverPhotos, params],
     queryFn: () => nasaApi.getMarsRoverPhotos(params),
+    staleTime: 1000 * 60 * 15,
+    gcTime: 1000 * 60 * 60 * 2,
+    ...options,
+  });
+};
+
+export const useNearEarthObjects = (
+  params: {
+    start_date?: string;
+    end_date?: string;
+  } = {},
+  options?: {
+    enabled?: boolean;
+  }
+) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.neoVisualizer, params],
+    queryFn: () => nasaApi.getNearEarthObjects(params),
     staleTime: 1000 * 60 * 15,
     gcTime: 1000 * 60 * 60 * 2,
     ...options,

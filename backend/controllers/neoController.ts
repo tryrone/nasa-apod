@@ -17,8 +17,8 @@ const getNeoFeed = async (req: Request, res: Response): Promise<any> => {
 
     return res.json(response.data as NeoObject);
   } catch (error) {
-    console.error("Mars Rover Photos Error:", (error as Error).message);
-    res.status(500).json({ error: "Failed to fetch Mars Rover photos" });
+    console.error("Neo Feed Error:", (error as Error).message);
+    res.status(500).json({ error: "Failed to fetch Neo Feed" });
   }
 };
 
