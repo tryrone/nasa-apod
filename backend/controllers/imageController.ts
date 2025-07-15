@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 
 const searchImages = async (req: Request, res: Response): Promise<any> => {
   const query = req.query["query"];
+  const page = req.query["page"] || 1;
 
   if (!query) {
     return res.status(400).json({ error: "Missing query parameter" });
@@ -11,7 +12,7 @@ const searchImages = async (req: Request, res: Response): Promise<any> => {
 
   try {
     const response = await axios.get(
-      `https://images-api.nasa.gov/search?q=${query}&media_type=image`
+      `https://images-api.nasa.gov/search?q=${query}&media_type=image&page=${page}&page_size=25`
     );
 
     return res.json(response.data as ImageSearchResponse);

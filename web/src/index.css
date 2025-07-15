@@ -82,7 +82,7 @@ body {
 }
 
 .pagination-page {
-  color: #fff;
+  color: #2c2c2c;
   border-radius: 50%;
 
   height: 24px;
@@ -96,6 +96,8 @@ body {
   font-size: 12px;
   font-weight: 400;
 
+  cursor: pointer;
+
   &::marker {
     visibility: hidden;
   }
@@ -103,4 +105,5 @@ body {
 
 .pagination-active {
   background-color: #2c2c2c;
+  color: #fff;
 }

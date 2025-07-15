@@ -87,16 +87,21 @@ export interface CloseApproachData {
 }
 
 export interface ImageSearchResponse {
-  href: string;
-  data: ImageSearchItem[];
-  links: {
+  collection: {
     href: string;
-    rel: string;
-    render: string;
-    width: number;
-    size: number;
-    height: number;
-  }[];
+    items: ImageSearchItem[];
+    links: {
+      href: string;
+      rel: string;
+      render: string;
+      width: number;
+      size: number;
+      height: number;
+    }[];
+    metadata: {
+      total_hits: number;
+    };
+  };
 }
 
 export interface ImageSearchData {
@@ -108,6 +113,7 @@ export interface ImageSearchData {
   media_type: string;
   nasa_id: string;
   title: string;
+  href: string;
 }
 
 export interface ImageSearchLink {
@@ -122,6 +128,7 @@ export interface ImageSearchLink {
 export interface ImageSearchItem {
   data: ImageSearchData[];
   links: ImageSearchLink[];
+  href: string;
 }
 
 // Available rovers
@@ -151,6 +158,7 @@ const endpoints = {
   apod: "/api/apod",
   marsPhotos: "/api/mars-rover",
   neoVisualizer: "/api/neo/feed",
+  mediaLibrary: "/api/image/search",
 };
 
 // NASA API Service Functions
@@ -179,6 +187,14 @@ export const nasaApi = {
     end_date?: string;
   }): Promise<NeoResponse> => {
     return api.get<NeoResponse>(endpoints.neoVisualizer, params);
+  },
+
+  // Get Media Library
+  getMediaLibrary: async (params: {
+    query: string;
+    page: number;
+  }): Promise<ImageSearchResponse> => {
+    return api.get<ImageSearchResponse>(endpoints.mediaLibrary, params);
   },
 };
 

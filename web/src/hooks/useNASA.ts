@@ -11,6 +11,7 @@ const QUERY_KEYS = {
   apod: "apod",
   marsRoverPhotos: "marsRoverPhotos",
   neoVisualizer: "neoVisualizer",
+  mediaLibrary: "mediaLibrary",
 } as const;
 
 // APOD Hook
@@ -59,6 +60,13 @@ export const useNearEarthObjects = (
     staleTime: 1000 * 60 * 15,
     gcTime: 1000 * 60 * 60 * 2,
     ...options,
+  });
+};
+
+export const useMediaLibrary = (params: { query: string; page: number }) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.mediaLibrary, params],
+    queryFn: () => nasaApi.getMediaLibrary(params),
   });
 };
 
