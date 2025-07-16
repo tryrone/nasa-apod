@@ -19,12 +19,6 @@ export const getApiUrl = (endpoint: string) => {
   }`;
 };
 
-// API Endpoints
-export const endpoints = {
-  apod: `${API_BASE_URL}/api/apod`,
-  marsPhotos: `${API_BASE_URL}/api/mars-photos`,
-} as const;
-
 // Helper function to build URLs with query parameters
 export const buildApiUrl = (
   endpoint: string,
