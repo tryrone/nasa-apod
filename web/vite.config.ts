@@ -14,6 +14,14 @@ export default defineConfig({
       overlay: true,
     },
   },
+  build: {
+    outDir: "dist",
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
   resolve: {
     alias: {
       // @ts-ignore
