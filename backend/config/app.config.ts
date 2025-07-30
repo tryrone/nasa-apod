@@ -1,16 +1,32 @@
-module.exports = {
-  port: process.env.PORT || 3000,
-  environment: process.env.NODE_ENV || "development",
+interface AppConfig {
+  port: number;
+  environment: string;
+  cors: {
+    origin: (string | RegExp)[];
+    credentials: boolean;
+    methods: string[];
+    allowedHeaders: string[];
+    optionsSuccessStatus: number;
+  };
+  requestLimits: {
+    json: string;
+    urlencoded: string;
+  };
+}
+
+const appConfig: AppConfig = {
+  port: parseInt(process.env['PORT'] || '3000', 10),
+  environment: process.env['NODE_ENV'] || "development",
   cors: {
     origin: [
-      process.env.FRONTEND_URL, // Environment variable
+      process.env['FRONTEND_URL'], // Environment variable
       "http://localhost:5173", // Vite dev server
       "http://localhost:3000", // Alternative dev server
       "https://localhost:5173", // HTTPS dev server
       /\.netlify\.app$/, // All Netlify apps
       /netlify\.app$/, // Alternative Netlify pattern
       /\.kaustubhsstuff\.com$/, // Allow all subdomains of kaustubhsstuff.com
-    ].filter(Boolean), // Remove any undefined values
+    ].filter(Boolean) as (string | RegExp)[], // Remove any undefined values
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
@@ -21,3 +37,5 @@ module.exports = {
     urlencoded: "10mb",
   },
 };
+
+export default appConfig; 

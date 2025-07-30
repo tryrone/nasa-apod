@@ -1,13 +1,12 @@
-// backend/server.js
+// backend/server.ts
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { apodRoutes, marsRoverRoutes, neoRoutes, imageRoutes } from "./routes";
 import { errorHandler, notFoundHandler } from "./middleware/error-handler";
+import appConfig from "./config/app.config";
 
 dotenv.config();
-
-const appConfig = require("./config/app.config");
 
 const app = express();
 const PORT = process.env["PORT"] || 5000;
