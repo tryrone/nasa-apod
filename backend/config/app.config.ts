@@ -15,11 +15,11 @@ interface AppConfig {
 }
 
 const appConfig: AppConfig = {
-  port: parseInt(process.env['PORT'] || '3000', 10),
-  environment: process.env['NODE_ENV'] || "development",
+  port: parseInt(process.env["PORT"] || "3000", 10),
+  environment: process.env["NODE_ENV"] || "development",
   cors: {
     origin: [
-      process.env['FRONTEND_URL'], // Environment variable
+      process.env["FRONTEND_URL"], // Environment variable
       "http://localhost:5173", // Vite dev server
       "http://localhost:3000", // Alternative dev server
       "https://localhost:5173", // HTTPS dev server
@@ -38,4 +38,4 @@ const appConfig: AppConfig = {
   },
 };
 
-export default appConfig; 
+export default appConfig;
